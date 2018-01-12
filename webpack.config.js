@@ -38,7 +38,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             // 表示限制图片大小，单位是kb，当图片大小大于这个值时， 就将图片处理成文件路径的格式，如果图片小于这个值，就图片处理成base64格式
-            limit: 5
+            limit: 10240
           }
         }]
       },
@@ -57,12 +57,21 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader'
       }
-    ]
+    ],
+   
+  },
+  // webpack-dev-server工具配置
+  devServer: {
+    contentBase: 'dist',
+    port: 7777,
+    open: true,
+    inline: true,
+    progress: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: './src/index.html',
-      template: 'template.html',
+      filename: 'index.html',
+      template: './src/index.html' ,
       title: "hello vue"
     })
   ]
